@@ -36,12 +36,12 @@ public class ValidatedModel<TModel, V>
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         };
 
-        await respone.WriteAsJsonAsync(new {
+        await respone.WriteAsJsonAsync(FunctionResponse.Create(new {
             errors = Errors.Select(x => new {
                 x.PropertyName,
                 x.ErrorMessage,
             })
-        }, new JsonObjectSerializer(serializerOptions), System.Net.HttpStatusCode.BadRequest);
+        }), new JsonObjectSerializer(serializerOptions), System.Net.HttpStatusCode.BadRequest);
 
         return respone;
     }

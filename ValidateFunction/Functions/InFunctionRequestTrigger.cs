@@ -43,7 +43,7 @@ public class InFunctionRequestTrigger {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         };
 
-        await respone.WriteAsJsonAsync(returnData, new JsonObjectSerializer(serializerOptions), statusCode);
+        await respone.WriteAsJsonAsync(FunctionResponse.Create(returnData), new JsonObjectSerializer(serializerOptions), statusCode);
 
         return respone;
     }
